@@ -1,0 +1,39 @@
+/* Retro CRT theme for Waybar: phosphor green on black. */
+* {
+    font-family: "BlexMono Nerd Font", "Font Awesome 6 Free", monospace;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+window#waybar {
+    background: #0a0f0a;
+    color: #33ff66;
+    border-bottom: 2px solid #1a3d22;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: #1f9945;
+    background: transparent;
+}
+
+#workspaces button.active {
+    color: #0a0f0a;
+    background: #33ff66;
+}
+
+#workspaces button:hover {
+    background: #1a3d22;
+    box-shadow: none;
+}
+
+#window { color: #1f9945; }
+
+#clock, #language, #pulseaudio, #network, #cpu, #memory, #battery, #tray {
+    padding: 0 10px;
+    color: #33ff66;
+}
+
+#clock { color: #ffb000; }
+#battery.warning { color: #ffb000; }
+#battery.critical { color: #ff3333; }

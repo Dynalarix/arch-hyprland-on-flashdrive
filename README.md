@@ -111,6 +111,26 @@ Shut down (`systemctl poweroff`) before pulling the drive. Writes are batched
 for up to 15 seconds, so pulling it out of a running system can lose recent
 changes.
 
+## Retro CRT theme
+
+`themes/crt/` turns the desktop into an old phosphor-green terminal: a screen
+shader with scanlines, RGB phosphor stripes, colour fringing and darker edges,
+square green window borders with a soft glow, plus matching Waybar, kitty,
+foot, fuzzel, mako and lock screen. Apply it from inside the installed system,
+as your normal user:
+
+```sh
+git clone https://github.com/Dynalarix/arch-hyprland-on-flashdrive
+cd arch-hyprland-on-flashdrive
+./themes/crt/apply.sh          # ./themes/crt/apply.sh --off to undo
+```
+
+- **SUPER+SHIFT+S** switches the CRT screen effect on and off (handy for games
+  or video, since the shader costs some GPU).
+- Tune it in `~/.config/hypr/shaders/crt.frag`: scanline strength, glow,
+  `TINT = 1.0` for a fully green monochrome screen (or amber), and `CURVE` for a
+  bulging tube. Run `hyprctl reload` to see changes.
+
 ## Disk layout
 
 | # | Size | Type | Use |

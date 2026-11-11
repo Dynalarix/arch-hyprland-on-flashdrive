@@ -62,3 +62,4 @@ noto-fonts-emoji
 ttf-dejavu
 ttf-jetbrains-mono-nerd
 ttf-font-awesome
+ttf-ibmplex-mono-nerd

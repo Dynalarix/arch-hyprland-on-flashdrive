@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: ShellCheck
-        run: shellcheck -x install.sh chroot-setup.sh config.sh files/hyprland-session
+        run: shellcheck -x install.sh chroot-setup.sh config.sh files/hyprland-session themes/crt/apply.sh themes/crt/hypr/scripts/crt-toggle.sh
       - name: Waybar config is valid JSON
         run: python3 -c "import json; json.load(open('files/skel/.config/waybar/config.jsonc'))"
