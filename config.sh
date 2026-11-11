@@ -34,10 +34,12 @@ INSTALL_LTS_KERNEL="${INSTALL_LTS_KERNEL:-yes}"
 # open-source nouveau driver works everywhere without extra setup.
 INSTALL_NVIDIA="${INSTALL_NVIDIA:-no}"
 
-# Exact Hyprland version to install and pin (pacman -Syu won't upgrade it),
-# taken from the Arch Linux Archive. Empty = latest from the repos.
-# Some dotfiles only work with one version; astroland_dots needs 0.55.2.
-HYPRLAND_VERSION="${HYPRLAND_VERSION:-0.55.2}"
-# Dotfiles ("rice") git repo installed for your user on top of the defaults.
-# Empty = keep this project's own Hyprland config.
-DOTFILES_REPO="${DOTFILES_REPO:-https://codeberg.org/zacoons/astroland_dots}"
+# zacoons' "astroland" rice: patched Hyprland 0.55.2 (pinned), its game
+# plugin, Quickshell bar/lock screen and VHS shader. Set to a git URL, a local
+# folder or a .tar.gz of the repo; empty = keep this project's own desktop.
+ASTROLAND_SOURCE="${ASTROLAND_SOURCE:-https://codeberg.org/zacoons/astroland_dots}"
+
+# Advanced: pin any Hyprland version without astroland (empty = latest), and
+# install some other dotfiles repo into ~/.config (empty = none).
+HYPRLAND_VERSION="${HYPRLAND_VERSION:-}"
+DOTFILES_REPO="${DOTFILES_REPO:-}"

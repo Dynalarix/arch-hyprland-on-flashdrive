@@ -111,25 +111,34 @@ Shut down (`systemctl poweroff`) before pulling the drive. Writes are batched
 for up to 15 seconds, so pulling it out of a running system can lose recent
 changes.
 
-## Pinned Hyprland version and other people's dotfiles
+## Astroland rice (default)
 
-Some Hyprland "rices" only work with one Hyprland release. Two settings in
-`config.sh` handle that during the install:
+The install sets up zacoons' [astroland](https://codeberg.org/zacoons/astroland_dots)
+rice: a VHS screen shader, a Quickshell overlay/lock screen/screensaver, and a
+Hyprland plugin that turns the desktop into a little space game. It only works
+on a patched Hyprland 0.55.2, so `extras/astroland.sh`:
 
-- `HYPRLAND_VERSION` (default `0.55.2`) installs that exact Hyprland, with the
-  matching aquamarine/hyprutils/hyprlang/hyprlock/... builds, from the
-  [Arch Linux Archive](https://archive.archlinux.org) and adds them to
-  `IgnorePkg`, so `pacman -Syu` updates everything else but leaves them alone.
-  Set it empty for the latest version.
-- `DOTFILES_REPO` (default `https://codeberg.org/zacoons/astroland_dots`)
-  clones a dotfiles repo and copies its config folders into `~/.config`,
-  backing up anything it replaces. Set it empty to keep this project's config.
+1. installs the programs it uses (Quickshell, foot, kitty, tofi, sox, ffmpeg,
+   mpd, rmpc, MartianMono font, ...), building any that are only in the AUR;
+2. installs Hyprland 0.55.2 and its matching libraries from the
+   [Arch Linux Archive](https://archive.archlinux.org) and pins them with
+   `IgnorePkg`, so `pacman -Syu` updates everything else but not those;
+3. rebuilds the `hyprland` package from Arch's own PKGBUILD with the rice's
+   `hyprland_clamp_to_border.patch` (10-30 minutes);
+4. compiles the plugin, rewrites the rice's `/home/zac/...` paths, links its
+   configs into `~/.config` (old ones go to `~/.config/astroland-backup-*`).
+   Your zsh config is kept.
 
-Both also work on an already installed system:
+Keys use **ALT**: ALT+Shift+Enter terminal, ALT+R launcher, ALT+Q close,
+ALT+Escape lock, ALT+X save the game, ALT+1..0 workspaces.
+
+Set `ASTROLAND_SOURCE=""` in `config.sh` to keep the plain desktop instead. On
+an installed system, run it any time:
 
 ```sh
-sudo ./extras/hyprland-pin.sh 0.55.2      # sudo ./extras/hyprland-pin.sh --unpin to undo
-./extras/dotfiles.sh https://codeberg.org/zacoons/astroland_dots
+sudo ./extras/astroland.sh                          # from Codeberg
+sudo ./extras/astroland.sh ~/astrolands_dots.tar.gz # or a local copy
+sudo ./extras/hyprland-pin.sh --unpin               # back to the latest Hyprland
 ```
 
 ## Retro CRT theme

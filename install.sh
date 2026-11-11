@@ -195,6 +195,12 @@ install -Dm755 "$SCRIPT_DIR/files/hyprland-session" "$MNT/usr/local/bin/hyprland
 install -d -m 700 "$MNT/root/pocket-installer"
 cp "$SCRIPT_DIR/chroot-setup.sh" "$MNT/root/pocket-installer/"
 cp "$SCRIPT_DIR"/extras/*.sh "$MNT/root/pocket-installer/"
+# A local copy of the astroland repo (folder or tarball) goes along too.
+ASTROLAND_SRC_IN_CHROOT="$ASTROLAND_SOURCE"
+if [[ -n "$ASTROLAND_SOURCE" && -e "$ASTROLAND_SOURCE" ]]; then
+    cp -a "$ASTROLAND_SOURCE" "$MNT/root/pocket-installer/astroland-src"
+    ASTROLAND_SRC_IN_CHROOT=/root/pocket-installer/astroland-src
+fi
 {
     printf 'TARGET_HOSTNAME=%q\n' "$TARGET_HOSTNAME"
     printf 'USERNAME=%q\n' "$USERNAME"
@@ -207,6 +213,7 @@ cp "$SCRIPT_DIR"/extras/*.sh "$MNT/root/pocket-installer/"
     printf 'TARGET_DEV=%q\n' "$DEV"
     printf 'HYPRLAND_VERSION=%q\n' "$HYPRLAND_VERSION"
     printf 'DOTFILES_REPO=%q\n' "$DOTFILES_REPO"
+    printf 'ASTROLAND_SOURCE=%q\n' "$ASTROLAND_SRC_IN_CHROOT"
     printf 'USER_PASSWORD=%q\n' "$USER_PASSWORD"
     printf 'ROOT_PASSWORD=%q\n' "$ROOT_PASSWORD"
 } > "$MNT/root/pocket-installer/settings"

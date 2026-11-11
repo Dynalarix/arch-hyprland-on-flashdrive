@@ -94,4 +94,11 @@ if [[ -n "${DOTFILES_REPO:-}" ]]; then
         || echo "WARNING: dotfiles install failed; the default config is still in place" >&2
 fi
 
+if [[ -n "${ASTROLAND_SOURCE:-}" ]]; then
+    log "Installing the astroland rice (builds Hyprland from source, takes a while)"
+    TARGET_USER="$USERNAME" KB_LAYOUTS="$KB_LAYOUTS" \
+        bash /root/pocket-installer/astroland.sh "$ASTROLAND_SOURCE" \
+        || echo "WARNING: astroland setup failed; the default desktop is still there. Re-run extras/astroland.sh after booting." >&2
+fi
+
 log "Chroot setup finished"
