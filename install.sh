@@ -194,6 +194,7 @@ install -Dm755 "$SCRIPT_DIR/files/hyprland-session" "$MNT/usr/local/bin/hyprland
 # Hand the settings and passwords to the chroot step through a root-only file.
 install -d -m 700 "$MNT/root/pocket-installer"
 cp "$SCRIPT_DIR/chroot-setup.sh" "$MNT/root/pocket-installer/"
+cp "$SCRIPT_DIR"/extras/*.sh "$MNT/root/pocket-installer/"
 {
     printf 'TARGET_HOSTNAME=%q\n' "$TARGET_HOSTNAME"
     printf 'USERNAME=%q\n' "$USERNAME"
@@ -204,6 +205,8 @@ cp "$SCRIPT_DIR/chroot-setup.sh" "$MNT/root/pocket-installer/"
     printf 'KB_LAYOUTS=%q\n' "$KB_LAYOUTS"
     printf 'INSTALL_NVIDIA=%q\n' "$INSTALL_NVIDIA"
     printf 'TARGET_DEV=%q\n' "$DEV"
+    printf 'HYPRLAND_VERSION=%q\n' "$HYPRLAND_VERSION"
+    printf 'DOTFILES_REPO=%q\n' "$DOTFILES_REPO"
     printf 'USER_PASSWORD=%q\n' "$USER_PASSWORD"
     printf 'ROOT_PASSWORD=%q\n' "$ROOT_PASSWORD"
 } > "$MNT/root/pocket-installer/settings"

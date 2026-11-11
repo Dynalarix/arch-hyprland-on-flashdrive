@@ -33,3 +33,11 @@ INSTALL_LTS_KERNEL="${INSTALL_LTS_KERNEL:-yes}"
 # Proprietary NVIDIA driver (yes/no). Leave "no" for maximum portability: the
 # open-source nouveau driver works everywhere without extra setup.
 INSTALL_NVIDIA="${INSTALL_NVIDIA:-no}"
+
+# Exact Hyprland version to install and pin (pacman -Syu won't upgrade it),
+# taken from the Arch Linux Archive. Empty = latest from the repos.
+# Some dotfiles only work with one version; astroland_dots needs 0.55.2.
+HYPRLAND_VERSION="${HYPRLAND_VERSION:-0.55.2}"
+# Dotfiles ("rice") git repo installed for your user on top of the defaults.
+# Empty = keep this project's own Hyprland config.
+DOTFILES_REPO="${DOTFILES_REPO:-https://codeberg.org/zacoons/astroland_dots}"

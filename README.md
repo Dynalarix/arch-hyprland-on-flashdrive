@@ -111,6 +111,27 @@ Shut down (`systemctl poweroff`) before pulling the drive. Writes are batched
 for up to 15 seconds, so pulling it out of a running system can lose recent
 changes.
 
+## Pinned Hyprland version and other people's dotfiles
+
+Some Hyprland "rices" only work with one Hyprland release. Two settings in
+`config.sh` handle that during the install:
+
+- `HYPRLAND_VERSION` (default `0.55.2`) installs that exact Hyprland, with the
+  matching aquamarine/hyprutils/hyprlang/hyprlock/... builds, from the
+  [Arch Linux Archive](https://archive.archlinux.org) and adds them to
+  `IgnorePkg`, so `pacman -Syu` updates everything else but leaves them alone.
+  Set it empty for the latest version.
+- `DOTFILES_REPO` (default `https://codeberg.org/zacoons/astroland_dots`)
+  clones a dotfiles repo and copies its config folders into `~/.config`,
+  backing up anything it replaces. Set it empty to keep this project's config.
+
+Both also work on an already installed system:
+
+```sh
+sudo ./extras/hyprland-pin.sh 0.55.2      # sudo ./extras/hyprland-pin.sh --unpin to undo
+./extras/dotfiles.sh https://codeberg.org/zacoons/astroland_dots
+```
+
 ## Retro CRT theme
 
 `themes/crt/` turns the desktop into an old phosphor-green terminal: a screen

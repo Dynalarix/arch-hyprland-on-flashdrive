@@ -82,4 +82,16 @@ systemctl enable systemd-resolved.service
 # Per-user services (polkit agent, audio) are started by Hyprland/systemd --user.
 sudo -u "$USERNAME" xdg-user-dirs-update || true
 
+# --- Pinned Hyprland version and dotfiles -----------------------------------
+if [[ -n "${HYPRLAND_VERSION:-}" ]]; then
+    log "Installing Hyprland $HYPRLAND_VERSION"
+    bash /root/pocket-installer/hyprland-pin.sh "$HYPRLAND_VERSION" \
+        || echo "WARNING: could not pin Hyprland $HYPRLAND_VERSION; keeping the latest version" >&2
+fi
+if [[ -n "${DOTFILES_REPO:-}" ]]; then
+    log "Installing dotfiles from $DOTFILES_REPO"
+    TARGET_USER="$USERNAME" bash /root/pocket-installer/dotfiles.sh "$DOTFILES_REPO" \
+        || echo "WARNING: dotfiles install failed; the default config is still in place" >&2
+fi
+
 log "Chroot setup finished"
