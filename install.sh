@@ -117,10 +117,25 @@ done
 #   3  rest    root        (ext4 or btrfs)
 log "Partitioning $DEV"
 umount -R "$MNT" 2>/dev/null || true
+# Unmount every partition of the drive, wherever it is mounted (/mnt, or
+# /run/media/... from a desktop automounter). Wiping a mounted drive leaves a
+# dead mount behind that fails later with "Input/output error".
 for part in $(lsblk -lnpo NAME "$DEV" | tail -n +2); do
-    umount "$part" 2>/dev/null || true
     swapoff "$part" 2>/dev/null || true
+    while read -r target; do
+        [[ -n "$target" ]] || continue
+        umount "$target" 2>/dev/null || umount -l "$target" \
+            || die "cannot unmount $part from $target; close programs using it and retry"
+    done < <(findmnt -rno TARGET --source "$part" 2>/dev/null)
 done
+if lsblk -lno MOUNTPOINTS "$DEV" | grep -q .; then
+    die "$DEV is still mounted:
+$(lsblk -o NAME,MOUNTPOINTS "$DEV")"
+fi
+# A parent directory left broken by an earlier failed run.
+if ! stat "$(dirname "$MNT")" >/dev/null 2>&1; then
+    die "$(dirname "$MNT") is unreadable (stale mount from an earlier run?). Run: umount -l $(dirname "$MNT")"
+fi
 wipefs -af "$DEV"
 sgdisk --zap-all "$DEV"
 sgdisk -n 1:0:+1M        -t 1:ef02 -c 1:BIOSBOOT \
