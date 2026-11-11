@@ -218,8 +218,19 @@ rm -rf "$MNT/root/pocket-installer"
 ln -sf ../run/systemd/resolve/stub-resolv.conf "$MNT/etc/resolv.conf"
 
 log "Flushing writes to the drive (can take a minute)"
+# pacman-key can leave gpg-agent/keyboxd running from the new system's
+# keyring, which keeps the mount busy.
+gpgconf --homedir "$MNT/etc/pacman.d/gnupg" --kill all 2>/dev/null || true
 sync
-umount -R "$MNT"
+for _ in 1 2 3 4 5; do
+    umount -R "$MNT" 2>/dev/null && break
+    sleep 2
+done
+if mountpoint -q "$MNT"; then
+    warn "$MNT is still busy. Processes using it:"
+    fuser -vm "$MNT" 2>&1 || true
+    die "the install itself finished. Close those processes, run 'umount -R $MNT', then unplug."
+fi
 
 log "Done. Unplug $DEV and boot any PC from it (pick the USB in the boot menu)."
 echo "Log in as '$USERNAME' and Hyprland starts. Press SUPER+/ for the key cheat sheet."
