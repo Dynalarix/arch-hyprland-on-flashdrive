@@ -1,0 +1,7 @@
+#!/bin/sh
+# Start Hyprland from the greeter. Newer Hyprland releases ship a
+# 'start-hyprland' launcher; fall back to the plain binary on older ones.
+if command -v start-hyprland >/dev/null 2>&1; then
+    exec start-hyprland
+fi
+exec Hyprland

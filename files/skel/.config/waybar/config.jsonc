@@ -1,0 +1,37 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["hyprland/language", "pulseaudio", "network", "cpu", "memory", "battery", "tray"],
+
+    "hyprland/window": { "max-length": 60 },
+    "hyprland/language": { "format": " {short}" },
+    "clock": {
+        "format": "{:%a %d %b  %H:%M}",
+        "tooltip-format": "<tt>{calendar}</tt>"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " muted",
+        "format-icons": { "default": ["", "", ""] },
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": " wired",
+        "format-disconnected": "offline",
+        "tooltip-format": "{ifname} {ipaddr}",
+        "on-click": "kitty nmtui"
+    },
+    "cpu": { "format": " {usage}%", "interval": 5 },
+    "memory": { "format": " {percentage}%", "interval": 5 },
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "states": { "warning": 25, "critical": 10 }
+    },
+    "tray": { "spacing": 8 }
+}

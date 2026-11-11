@@ -1,0 +1,32 @@
+# Core system. One package per line; '#' starts a comment.
+base
+linux
+linux-headers
+linux-firmware
+# Microcode for both CPU vendors, since the drive moves between machines.
+intel-ucode
+amd-ucode
+# Extra firmware for audio on many laptops and some Wi-Fi/Bluetooth chips.
+sof-firmware
+alsa-firmware
+# Boot loader (BIOS + UEFI from one install).
+grub
+efibootmgr
+# Filesystems: read/write other people's disks and sticks.
+e2fsprogs
+btrfs-progs
+dosfstools
+exfatprogs
+ntfs-3g
+# Networking.
+networkmanager
+wpa_supplicant
+wireless-regdb
+openssh
+# Privileges and basics.
+sudo
+man-db
+man-pages
+texinfo
+# Compressed swap in RAM instead of a swap file that wears out the flash.
+zram-generator

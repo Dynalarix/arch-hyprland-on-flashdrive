@@ -1,0 +1,30 @@
+ Pocket Arch: Hyprland keys            (q to close)
+ ------------------------------------------------
+ SUPER + Enter            terminal (kitty)
+ SUPER + Shift + Enter    terminal (foot, lighter)
+ SUPER + D                app launcher
+ SUPER + E                file manager
+ SUPER + B                Firefox
+ SUPER + /                this help
+
+ SUPER + Q                close window
+ SUPER + F                fullscreen
+ SUPER + V                float / tile window
+ SUPER + J                switch split direction
+ SUPER + arrows           move focus
+ SUPER + Shift + arrows   move window
+ SUPER + drag (L / R)     move / resize window
+
+ SUPER + 1..0             go to workspace
+ SUPER + Shift + 1..0     send window to workspace
+ SUPER + scroll           cycle workspaces
+
+ Print                    screenshot of a region -> clipboard
+ Shift + Print            screenshot of everything -> clipboard
+ SUPER + C                clipboard history
+
+ SUPER + Escape           lock screen
+ SUPER + Shift + E        log out
+ Alt + Shift              switch keyboard layout (if several)
+
+ Config: ~/.config/hypr/hyprland.conf

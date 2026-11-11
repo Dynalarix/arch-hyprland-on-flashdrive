@@ -1,0 +1,54 @@
+# Shells and shell comfort.
+bash-completion
+zsh
+zsh-completions
+zsh-autosuggestions
+zsh-syntax-highlighting
+fish
+starship
+zoxide
+fzf
+# Development.
+base-devel
+git
+git-lfs
+github-cli
+neovim
+vim
+nano
+python
+python-pip
+tmux
+jq
+# Modern command-line replacements.
+ripgrep
+fd
+bat
+eza
+btop
+htop
+tree
+ncdu
+# Networking and transfer.
+curl
+wget
+rsync
+nmap
+bind
+# Archives.
+zip
+unzip
+p7zip
+unrar
+# Hardware and disk inspection (handy on a stick you plug into strange PCs).
+usbutils
+pciutils
+lshw
+dmidecode
+smartmontools
+gparted
+parted
+gptfdisk
+lsof
+inxi
+fastfetch

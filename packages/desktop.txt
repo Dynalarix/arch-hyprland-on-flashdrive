@@ -1,0 +1,64 @@
+# Hyprland desktop.
+hyprland
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+xdg-utils
+xdg-user-dirs
+hyprpolkitagent
+hyprlock
+hypridle
+qt5-wayland
+qt6-wayland
+# Login screen: a small text greeter that starts Hyprland.
+greetd
+greetd-tuigreet
+# Bar, launcher, notifications, terminals.
+waybar
+fuzzel
+mako
+kitty
+foot
+# Screenshots and clipboard.
+grim
+slurp
+wl-clipboard
+cliphist
+# Graphics drivers for Intel, AMD and NVIDIA (nouveau), plus software fallback.
+mesa
+vulkan-intel
+vulkan-radeon
+vulkan-nouveau
+intel-media-driver
+# Audio.
+pipewire
+pipewire-alsa
+pipewire-pulse
+pipewire-jack
+wireplumber
+pavucontrol
+# Bluetooth.
+bluez
+bluez-utils
+blueman
+# Network applet, brightness and media keys.
+network-manager-applet
+brightnessctl
+playerctl
+# Files and apps.
+thunar
+thunar-archive-plugin
+thunar-volman
+gvfs
+gvfs-mtp
+tumbler
+file-roller
+firefox
+imv
+mpv
+# Fonts (Latin, Cyrillic, CJK, emoji, and icons used by the bar).
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+ttf-dejavu
+ttf-jetbrains-mono-nerd
+ttf-font-awesome
