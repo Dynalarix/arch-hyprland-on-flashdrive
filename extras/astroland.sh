@@ -4,6 +4,7 @@
 #   sudo ./extras/astroland.sh                      # clone from Codeberg
 #   sudo ./extras/astroland.sh ~/astroland_dots.tar.gz
 #   sudo ./extras/astroland.sh ~/src/astroland_dots
+#   sudo ./extras/astroland.sh --off                # back to the normal desktop
 #
 # What the rice needs, and what this script does about it:
 #   - Hyprland 0.55.2 with the repo's clamp-to-border patch: installs 0.55.2
@@ -43,6 +44,23 @@ BACKUP="$CFG/astroland-backup-$(date +%Y%m%d-%H%M%S)"
 SRC="${1:-$UPSTREAM}"
 
 as_user() { runuser -u "$TARGET_USER" -- env HOME="$HOME_DIR" USER="$TARGET_USER" LOGNAME="$TARGET_USER" "$@"; }
+
+# --- --off: switch back to the normal desktop ----------------------------------
+if [[ "${1:-}" == "--off" ]]; then
+    log "Removing the astroland config links from $CFG"
+    for l in "$CFG"/* "$CFG"/.[!.]*; do
+        [[ -L "$l" && "$(readlink "$l")" == "$DOTS"/* ]] && rm "$l"
+    done
+    last="$(find "$CFG" -maxdepth 1 -type d -name 'astroland-backup-*' | sort | tail -n1)"
+    if [[ -n "$last" ]]; then
+        log "Restoring your previous configs from $last"
+        as_user cp -a "$last/." "$CFG/"
+    fi
+    # Anything still missing comes from the system defaults.
+    as_user cp -an /etc/skel/.config/. "$CFG/" 2>/dev/null || true
+    log "Done. Log out and back in. The rice stays in $DOTS; run this script again to switch back."
+    exit 0
+fi
 
 # makepkg must run as the user but install with pacman: allow exactly that,
 # without a password, only while this script runs.
